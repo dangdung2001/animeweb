@@ -1,0 +1,40 @@
+.wrapper{
+
+}
+
+.title{
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+
+    & a{
+        font-size: 1.8rem;
+        color: var(--white);
+        padding : 9px 12px;
+    }
+}
+
+.title-btn{
+    pointer-events: none;
+}
+
+.list-items{
+    padding: 15px 0;
+}
+
+.active{
+    color: #ff0033bd !important;
+}
+
+.more-btn{
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    background-color: #161e21!important;
+    cursor: pointer;
+
+    &:hover{
+        opacity: 0.8;
+        background-color: #161e21!important;
+    }
+}
