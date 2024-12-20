@@ -1,0 +1,133 @@
+.wrapper {
+  position: relative;
+  height: 600px;
+  background-color: #263238;
+}
+
+.note {
+  position: absolute;
+  top: 5%;
+  display: flex;
+  align-items: center;
+  background-color: #de1515;
+  width: 75%;
+  height: 30px;
+  font-size: 1.3rem;
+  font-weight: 400;
+  padding-left: 10px;
+  
+}
+
+.content {
+  width: 100%;
+  height: 75%;
+  position: absolute;
+  top: 15%;
+  background-color: #263238;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+    margin: 20px 0;
+    font-size: 2.8rem;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 50%;
+    border-bottom: 1px solid #ffffff2e;
+    margin: 10px 0;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: #ffffff94;
+
+}
+.font-icon{
+    font-size: 1.6rem;
+}
+
+.login {
+    
+    padding: 15px 5px;
+    flex: 1;
+    font-size: 1.5rem;
+    color: #fff;
+    background-color: transparent;
+    font-weight: 700;
+}
+
+.forgot-password {
+    position: absolute;
+    color: #ffffff60;
+    bottom: 5px;
+    right: 0;
+}
+
+.submit-wrapper {
+    display: flex;
+    width: 50%;
+    margin: 20px 0;
+    justify-content: space-between;
+}
+
+.save-password {
+    width: 15px;
+    height: 15px;
+    margin: 20px 0 0 30px;
+    margin-right: 5px;
+}
+
+.submit {
+}
+
+.register-wrapper {
+    display: flex;
+    margin: 20px 0;
+}
+
+.more{
+    color: #d5e2e89e;
+}
+
+.extention{
+    display: flex;
+    justify-content: space-between;
+}
+.Face-login,
+.google-login {
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    margin: 15px;
+}
+
+.google-login{
+    color: #000;
+    background-color: #fff;
+}
+
+.Face-login{
+    color: #fff;
+    background-color: #2a1484c3;
+}
+
+
+.extention-icon{
+    margin-right: 5px;
+    fill: #fff;
+    height: 20px;
+    width: 20px;
+}

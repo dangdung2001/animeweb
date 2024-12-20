@@ -18,7 +18,6 @@ import Button from "~/component/button";
 const cx = classnames.bind(style);
 
 function MoviePost({data}) {
-    console.log(data);
     
   return (
     <div className={cx("wrapper")}>
@@ -54,18 +53,18 @@ function MoviePost({data}) {
           dying words at his execution.
         </p>
 
-        <p className={cx("studio")}>
+        <span className={cx("studio")}>
           <span>
             <FontAwesomeIcon icon={faVideoCamera} />
           </span>
           <p className={cx("studio-name")}>Studio XYZ</p>
-        </p>
-        <p className={cx("category")}>
+        </span>
+        <span className={cx("category")}>
           <span>
             <FontAwesomeIcon icon={faClapperboard} />
           </span>
           <p className={cx("category-name")}>Action</p>
-        </p>
+        </span>
         <Button classname={cx("play-btn")} primary small>
           Xem Phim
         </Button>

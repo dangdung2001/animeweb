@@ -5,6 +5,7 @@ import style from './Header.module.scss'
 import { Menu } from '~/component';
 import Search from '~/component/search';
 import Button from '~/component/button';
+import { Link } from 'react-router-dom';
 
 const cx = classnames.bind(style);
 
@@ -12,11 +13,13 @@ const cx = classnames.bind(style);
   return (  
     <header className={cx('wrapper')}>
         <div className={cx('header')}>
-            <img src='https://cdn.animevietsub.cx/data/logo/logoz.png' alt='animal'/>
+            <Link className={cx('logo')} to='/'>
+              <img src='https://cdn.animevietsub.cx/data/logo/logoz.png' alt='animal'/>
+            </Link>
             <Menu />
             <div className={cx('options-header')}>
               <Search/>
-              <Button classname={cx('login-btn')} primary> Log In </Button>
+              <Button to='/login' classname={cx('login-btn')} primary> Log In </Button>
             </div>
         </div>
     </header>

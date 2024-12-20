@@ -111,9 +111,9 @@ export default function Listmovie({title, optionsTitle , comicSoon}) {
         <div className={cx('title')}>
             <Button classname={cx('title-btn')} primary large>{title}</Button>
             {optionsTitle && (
-              optionsTitle.items.map((items) => {
+              optionsTitle.items.map((items , index) => {
                   return (
-                    <NavLink className={({isActive }) => (isActive ? cx('active'): '')} to={items.to}>{items.title}</NavLink>
+                    <NavLink key={index} className={({isActive }) => (isActive ? cx('active'): '')} to={items.to}>{items.title}</NavLink>
                   )
               })
             )}

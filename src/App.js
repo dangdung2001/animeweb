@@ -1,18 +1,29 @@
-import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Mainlayout from './layout';
-import { Footer, Header, MovieListTop, Slider, WidgetArea } from './layout/components';
-import Movie from './layout/components/Movie/Movie';
-
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Mainlayout from "./layout";
+import { publicRouters } from "./router";
 
 function App() {
   return (
     <>
-    <Router>
-      <Routes>
-        <Route path="/" element={<Mainlayout/>} />
-      </Routes>
-    </Router>
+      <Router>
+        <Routes>
+          {publicRouters.map((routePublic , index) => {
+            let Layout = Mainlayout;
+            // logic chia layout , routes
+            return (
+              <Route key={index}
+                path={routePublic.path}
+                element={
+                  <Layout movieListsTop={routePublic.movieListsTop}>
+                    <routePublic.component />
+                  </Layout>
+                }
+              />
+            );
+          })}
+        </Routes>
+      </Router>
     </>
   );
 }

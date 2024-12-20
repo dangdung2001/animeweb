@@ -7,67 +7,17 @@ import Listmovie from "~/component/listmovie/listmovie";
 
 const cx = classnames.bind(style);
 
-function Mainlayout() {
+function Mainlayout({movieListsTop , children}) {
   return (
     <div className={cx("wrapper")}>
       <components.Header />
       <div className={cx("main")}>
         <HeaderAds />
-        <components.MovieListTop />
+        {movieListsTop && <components.MovieListTop />}
         <div className={cx("content")}>
-          <div className={cx("content-main")}>
-            <components.Slider />
-
-            <Listmovie
-              title="MỚI CẬP NHẬP"
-              optionsTitle={{
-                items: [
-                  {
-                    title: "Tất Cả",
-                    to: "/",
-                  },
-                  {
-                    title: "Mùa thu - 2024",
-                    to: "/",
-                  },
-                  {
-                    title: "Anime bộ",
-                    to: "/",
-                  },
-                  {
-                    title: "Anime lẽ",
-                    to: "/",
-                  },
-                ],
-              }}
-            />
-
-            <Listmovie title="SẮP CHIẾU" comicSoon />
-
-            <Listmovie
-              title="ĐỀ CỬ"
-              optionsTitle={{
-                items: [
-                  {
-                    title: "Xem nhiều hôm nay",
-                    to: "/",
-                  },
-                  {
-                    title: 'Xem nhiều trong mùa',
-                    to: "/",
-                  },
-                  {
-                    title: "Yêu Thích",
-                    to: "/",
-                  },
-                  {
-                    title: "Tháng",
-                    to: "/",
-                  },
-                ],
-              }}
-            />
-          </div>
+            <div className={cx("content-main")}>
+              {children}
+            </div>
           <div className={cx("widget-area")}>
             <components.WidgetArea />
           </div>

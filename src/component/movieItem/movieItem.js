@@ -3,7 +3,6 @@ import classnames from "classnames/bind";
 import style from "./movieItem.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-import { faCirclePlay } from "@fortawesome/free-regular-svg-icons";
 import Button from "../button";
 
 const cx = classnames.bind(style);

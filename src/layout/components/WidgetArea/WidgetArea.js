@@ -56,9 +56,9 @@ const movieUpdated = [
     <div className={cx('wrapper')}>
         <h4 className={cx('title')}>ANIME MỚI CẬP NHẬP</h4>
         {
-          movieUpdated.map((movie) => {
+          movieUpdated.map((movie , index) => {
             return (
-              <div className={cx('movie')}>
+              <div key={index} className={cx('movie')}>
                 <p className={cx('title-movie')}>{movie.title}</p>
                 <p className={cx('state')}>{movie.state}</p>
               </div>

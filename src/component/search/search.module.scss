@@ -49,12 +49,12 @@
 .search-result {
 }
 
-.search-title {
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 22px;
-  color: rgba(22, 24, 35, 0.5);
-  padding: 5px 12px 3px;
+.popper-btn{
+  width: 100%;
+  margin-top: 10px;
+  color: var(--white);
+  background-color: #f44336!important;
+  font-weight: 500!important;
 }
 
 .clean,

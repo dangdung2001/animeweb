@@ -25,7 +25,7 @@ function Swipper({
   width,
   height,
   described,
-  comicSoon
+  comicSoon,
 }) {
   return (
     <>
