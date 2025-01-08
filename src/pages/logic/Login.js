@@ -1,19 +1,132 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import * as Yup from "yup";
 import classnames from "classnames/bind";
 import style from "./login.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCompass,
   faEnvelope,
+  faEye,
+  faEyeSlash,
   faLock,
+  faMicrophone,
   faVoicemail,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "~/component/button";
+import { LoginRequest } from "~/services";
+import { AuthContext } from "~/context/AuthContext";
 
 const cx = classnames.bind(style);
 
 export default function Login() {
+
+  const { user , Login } = useContext(AuthContext);
+
+  const [Email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [PasswordError, setPasswordError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [remember, setRemember] = useState(false);
+  const [errorMess, setErrorMess] = useState("");
+
+  const navigate = useNavigate();
+  
+
+  const emailSchema = Yup.string()
+    .email("Email không hợp lệ")
+    .required("Email là bắt buộc");
+
+    const PasswordSchema = Yup.string()
+    .min( 6 ,"Mật khẩu tối thiểu 6 kí tự")
+    .max(30, "Mật khẩu tối đa 30 kí tự")
+    // .matches(
+    //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,30}$/,
+    //   "Mật khẩu chứa ít nhất 1 kí tự in hoa, kí tự đặc biệt")
+    .required("Mật khẩu là bắt buộc");
+
+    const handleBlurEmail = async () => {
+      try {
+        await emailSchema.validate(Email);
+        setEmailError(""); 
+      } catch (err) {
+        setEmailError(err.message); 
+      }
+    };
+
+    const handleBlurPassword = async () => {
+      try {
+        await PasswordSchema.validate(password);
+        setPasswordError("");
+      } catch (err) {
+        setPasswordError(err.message);
+      }
+    };
+
+    const togglePasswordVisibility = () =>{
+      setShowPassword(!showPassword);
+    }
+
+    const toggleRemember = (e) =>{
+      if(e.target.checked === true){
+        setRemember(true);
+      }
+      else{
+        setRemember(false);
+      }
+    }
+
+  const handleEmailinput = (e) => {
+    setEmailError("");
+    setEmail(e.target.value.trim());
+  }
+  const handlePasswordInput = (e) => {
+    setPasswordError("");
+    setPassword(e.target.value.trim());
+  }
+
+  const handleSubmit = async (e) => {
+
+    e.preventDefault();
+
+    try {
+      await emailSchema.validate(Email);
+      setEmailError(""); 
+    } catch (err) {
+      setEmailError(err.message);
+      return;
+    }
+
+    try {
+      await PasswordSchema.validate(password);
+      setPasswordError("");
+    } catch (err) {
+      setPasswordError(err.message);
+      return;
+    }
+
+    // logic login
+    LoginRequest(Email, password , remember)
+      .then(data => {
+        localStorage.setItem('jwtToken', data.jwt);
+
+        if(data?.refreshToken?.token){
+          localStorage.setItem('isRefreshToken', true);
+        }
+        Login(data.jwt , data.user);
+        navigate("/");
+      })
+      .catch(err => {
+        setErrorMess("Thông tin tài khoản hoặc mật khẩu không chính xác!");
+        console.log(err);
+      });
+
+
+    // reset inputs
+    setPassword("");
+  }
+
   return (
     <div className={cx("wrapper")}>
       <div className={cx("note")}>
@@ -24,29 +137,43 @@ export default function Login() {
       </div>
       <div className={cx("content")}>
         <h2 className={cx("title")}>ĐĂNG NHẬP</h2>
-
+        <p style={{color : "#de1515"}}>{errorMess}</p>
         <div className={cx("input-wrapper")}>
           <span className={cx("icon")}>
             <FontAwesomeIcon className={cx("font-icon")} icon={faEnvelope} />
           </span>
           <input
+            value={Email}
             type="text"
             className={cx("login")}
             placeholder="Email đăng nhập"
+            onInput={handleEmailinput}
+            onBlur={handleBlurEmail}
           />
+          {emailError && <span className={cx("error")}>{emailError}</span>}
         </div>
         <div className={cx("input-wrapper")}>
           <span className={cx("icon")}>
             <FontAwesomeIcon className={cx("font-icon")} icon={faLock} />
           </span>
           <input
-            type="password"
+            style={{fontSize: '1.4rem'}}
+            value={password}
+            type={showPassword ? "text" : "password"}
             className={cx("login")}
             placeholder="Mật khẩu"
+            onInput={handlePasswordInput}
+            onBlur={handleBlurPassword}
           />
+          {PasswordError && <span className={cx("error")}>{PasswordError}</span>}
           <Link href="#" className={cx("forgot-password")}>
             Quên mật khẩu?
           </Link>
+
+          <span style={password ? {display: "block"} : {display: "none"}} className={cx('toggerDisplayPassword')}  onClick={togglePasswordVisibility}>
+            <FontAwesomeIcon icon={showPassword ? faEyeSlash  : faEye}/>
+          </span>
+
         </div>
 
         <div className={cx("submit-wrapper")}>
@@ -54,12 +181,13 @@ export default function Login() {
             <input
               id="save-pass"
               type="checkbox"
-              value=""
+              value="remember me"
               className={cx("save-password")}
+              onChange={toggleRemember}
             />
             <label htmlFor="save-password">Lưu mật khẩu</label>
           </div>
-          <Button primary>Đăng nhập</Button>
+          <Button primary onClick={handleSubmit}>Đăng nhập</Button>
         </div>
 
         <div className={cx("register-wrapper")}>

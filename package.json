@@ -8,16 +8,20 @@
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@tippyjs/react": "^4.2.6",
+    "axios": "^1.7.9",
     "classnames": "^2.5.1",
     "cra-template": "1.2.0",
     "customize-cra": "^1.0.0",
+    "json-server": "^1.0.0-beta.3",
+    "jwt-decode": "^4.0.0",
     "react": "^18.3.1",
     "react-app-rewired": "^2.2.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.0.2",
     "react-scripts": "5.0.1",
     "sass": "^1.83.0",
-    "swiper": "^11.1.15"
+    "swiper": "^11.1.15",
+    "yup": "^1.6.1"
   },
   "scripts": {
     "start": "react-app-rewired start",

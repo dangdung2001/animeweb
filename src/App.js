@@ -2,10 +2,12 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Mainlayout from "./layout";
 import { publicRouters } from "./router";
+import { AuthProvider } from "~/context/AuthContext";
 
 function App() {
   return (
     <>
+    <AuthProvider>
       <Router>
         <Routes>
           {publicRouters.map((routePublic , index) => {
@@ -24,6 +26,7 @@ function App() {
           })}
         </Routes>
       </Router>
+      </AuthProvider>
     </>
   );
 }

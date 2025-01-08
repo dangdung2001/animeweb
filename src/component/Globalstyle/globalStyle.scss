@@ -119,6 +119,15 @@ body {
   }
 }
 
+
+input[type="password"]::-ms-reveal, 
+input[type="password"]::-ms-clear, 
+input[type="password"]::-webkit-clear-button, 
+input[type="password"]::-webkit-textfield-decoration-container { 
+  display: none; 
+}
+
+
 // scrollbar
 
 html ::-webkit-scrollbar {

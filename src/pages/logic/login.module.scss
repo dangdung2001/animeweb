@@ -40,7 +40,15 @@
     align-items: center;
     width: 50%;
     border-bottom: 1px solid #ffffff2e;
-    margin: 10px 0;
+    margin: 20px 0;
+}
+
+.error{
+    position: absolute;
+    color: #de1515;
+    font-size: 1.3rem;
+    bottom: -25px;
+    left: 2%;
 }
 
 .icon {
@@ -69,14 +77,24 @@
 .forgot-password {
     position: absolute;
     color: #ffffff60;
-    bottom: 5px;
+    bottom: -30px;
     right: 0;
+}
+
+.toggerDisplayPassword {
+    position: absolute;
+    top: 20%;
+    right: 0;
+    font-size: 1.7rem;
+    color: #ffffffc3;
+    padding: 4px;
+    cursor: pointer;
 }
 
 .submit-wrapper {
     display: flex;
     width: 50%;
-    margin: 20px 0;
+    margin: 30px 0 10px 0;
     justify-content: space-between;
 }
 
@@ -93,6 +111,17 @@
 .register-wrapper {
     display: flex;
     margin: 20px 0;
+    justify-content: space-between;
+    width: 30%;
+    color: #d5e2e89e;
+
+    a{
+        color: #ffffffc6;
+    }
+
+    a:hover{
+        color: #fff;
+    }
 }
 
 .more{

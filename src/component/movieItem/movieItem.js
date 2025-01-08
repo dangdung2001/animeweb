@@ -4,6 +4,7 @@ import style from "./movieItem.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import Button from "../button";
+import { Link, useNavigate } from "react-router-dom";
 
 const cx = classnames.bind(style);
 
@@ -14,10 +15,19 @@ export default function MovieItem({
   described,
   comicSoon
 }) {
+
+  const movie = useNavigate();
+
+  const handleClickMovie = () => {
+    movie("/movie");
+  }
+
+
   return (
     <>
-      <div style={{ width: width, height: height }} className={cx("wrapper")}>
-        <img className={cx("movie-img")} src={data.poster} alt="" />
+      
+      <div onClick={handleClickMovie} style={{ width: width, height: height }} className={cx("wrapper")}>
+      <img className={cx("movie-img")} src={data.poster} alt="" />
         <div className={cx("rate-movie")}>
           <span className={cx("star")}>
             <FontAwesomeIcon icon={faStar} />

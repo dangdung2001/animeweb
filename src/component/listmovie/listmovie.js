@@ -9,6 +9,8 @@ const cx = classnames.bind(style);
 
 export default function Listmovie({title, optionsTitle , comicSoon}) {
 
+    
+
     const movies = [
         {
           id: 1,

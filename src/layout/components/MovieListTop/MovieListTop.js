@@ -1,13 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classnames from "classnames/bind";
 import style from "./movieListTop.module.scss";
 import Swipper from "~/component/swipper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
+import { getMovie } from "~/services/movieService";
 
 const cx = classnames.bind(style);
 
 function MovieListTop() {
+
+
+  useEffect(() => {
+    getMovies();
+  }, [])
+
+  const getMovies = async () => {
+
+    const response = await getMovie();
+    if (response.status === 200) {
+      console.log(response.data.content);
+    }
+  }
+
+
   const movies = [
     {
       id: 1,

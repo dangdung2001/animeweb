@@ -1,5 +1,6 @@
 import Home from "~/pages/home"
 import Login from "~/pages/logic"
+import { movie } from "~/pages/movieDetail";
 
 const publicRouters = [
     {
@@ -11,6 +12,11 @@ const publicRouters = [
         path: '/login',
         component: Login,
     },
+    {
+        path: '/movie',
+        component: movie,
+        movieListsTop : true
+    }
 ];
 
 
